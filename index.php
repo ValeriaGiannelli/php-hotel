@@ -41,6 +41,10 @@
 
     ];
 
+// se la chiave "parking" è true allora metti Sì -> se è false metti No
+
+
+
 ?>
 
 
@@ -58,7 +62,6 @@
   <thead>
   
     <tr>
-        <th scope="col">#</th>
         <th scope="col">Nome</th>
         <th scope="col">Descrizione</th>
         <th scope="col">Presenza del parcheggio</th>
@@ -69,14 +72,23 @@
   </thead>
 
   <tbody>
+    <!-- per ogni elemento prendi i valori associati alle chiavi -->
     <?php foreach($hotels as $hotel): ?>
     <tr>
-      <th scope="row">1</th>
       <td><?php echo $hotel['name']?></td>
       <td><?php echo $hotel['description']?></td>
-      <td><?php echo $hotel['parking']?></td>
+
+      <!-- se parcheggio è true allora stampa Sì -->
+      <?php if($hotel['parking']):?>
+        <td>Sì</td>
+      
+      <!-- se parcheggio è false allora stampa No -->
+      <?php else: ?>
+        <td>No</td>
+      <?php endif; ?>
+      
       <td><?php echo $hotel['vote']?></td>
-      <td><?php echo $hotel['distance_to_center']?></td>
+      <td><?php echo $hotel['distance_to_center']?> km</td>
     </tr>
     <?php endforeach; ?>
 
