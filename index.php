@@ -57,44 +57,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-<table class="table">
 
-  <thead>
-  
-    <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Descrizione</th>
-        <th scope="col">Presenza del parcheggio</th>
-        <th scope="col">Voti</th>
-        <th scope="col">Distanza dal centro</th>
-    </tr>
-  
-  </thead>
+<div class="container my-5">
+    <!-- tabella con le informazioni -->
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Presenza del parcheggio</th>
+            <th scope="col">Voti</th>
+            <th scope="col">Distanza dal centro</th>
+        </tr>
+    
+    </thead>
 
-  <tbody>
-    <!-- per ogni elemento prendi i valori associati alle chiavi -->
-    <?php foreach($hotels as $hotel): ?>
-    <tr>
-      <td><?php echo $hotel['name']?></td>
-      <td><?php echo $hotel['description']?></td>
+    <tbody>
+        <!-- per ogni elemento prendi i valori associati alle chiavi -->
+        <?php foreach($hotels as $hotel): ?>
+        <tr>
+        <td><?php echo $hotel['name']?></td>
+        <td><?php echo $hotel['description']?></td>
 
-      <!-- se parcheggio è true allora stampa Sì -->
-      <?php if($hotel['parking']):?>
-        <td>Sì</td>
-      
-      <!-- se parcheggio è false allora stampa No -->
-      <?php else: ?>
-        <td>No</td>
-      <?php endif; ?>
-      
-      <td><?php echo $hotel['vote']?></td>
-      <td><?php echo $hotel['distance_to_center']?> km</td>
-    </tr>
-    <?php endforeach; ?>
+        <!-- se parcheggio è true allora stampa Sì -->
+        <?php if($hotel['parking']):?>
+            <td>Sì</td>
+        
+        <!-- se parcheggio è false allora stampa No -->
+        <?php else: ?>
+            <td>No</td>
+        <?php endif; ?>
+        
+        <td><?php echo $hotel['vote']?></td>
+        <td><?php echo $hotel['distance_to_center']?> km</td>
+        </tr>
+        <?php endforeach; ?>
 
-  </tbody>
-</table>
-
+    </tbody>
+    </table>
+</div>
 
     
 </body>
