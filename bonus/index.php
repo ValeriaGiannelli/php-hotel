@@ -43,7 +43,7 @@
 
 // deve prendere i valori che la persona passa 
 $parking = $_GET["parking"];
-var_dump($parking);
+// var_dump($parking);
 
 
 ?>
@@ -92,26 +92,51 @@ var_dump($parking);
     </thead>
 
     <tbody>
+        <!-- se la variabile parking è settata su sì stampa gli hotel con sì -->
+        <?php if($parking === 'yes'):?>
         <!-- per ogni elemento prendi i valori associati alle chiavi -->
-        <?php foreach($hotels as $hotel): ?>
-        <tr>
-        <td><?php echo $hotel['name']?></td>
-        <td><?php echo $hotel['description']?></td>
+            <?php foreach($hotels as $hotel): ?>
+                <?php if($hotel['parking']):?>
+                    <tr>
+                    <td><?php echo $hotel['name']?></td>
+                    <td><?php echo $hotel['description']?></td>
+                    <td>Sì</td>
+                    <td><?php echo $hotel['vote']?></td>
+                    <td><?php echo $hotel['distance_to_center']?> km</td>
+                <?php endif; ?>
+            <?php endforeach; ?>
 
-        <!-- se parcheggio è true allora stampa Sì -->
-        <?php if($hotel['parking']):?>
-            <td>Sì</td>
-        
-        <!-- se parcheggio è false allora stampa No -->
+        <?php elseif($parking === 'no'): ?>
+            <?php foreach($hotels as $hotel): ?>
+                <?php if(!$hotel['parking']):?>
+                    <tr>
+                    <td><?php echo $hotel['name']?></td>
+                    <td><?php echo $hotel['description']?></td>
+                    <td>No</td>
+                    <td><?php echo $hotel['vote']?></td>
+                    <td><?php echo $hotel['distance_to_center']?> km</td>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
         <?php else: ?>
-            <td>No</td>
+            <?php foreach($hotels as $hotel): ?>
+                <tr>
+                    <td><?php echo $hotel['name']?></td>
+                    <td><?php echo $hotel['description']?></td>
+                    <!-- se parcheggio è true allora stampa Sì -->
+                    <?php if($hotel['parking']):?>
+                        <td>Sì</td>
+                    
+                    <!-- se parcheggio è false allora stampa No -->
+                    <?php else: ?>
+                        <td>No</td>
+                    <?php endif; ?>
+                    
+                    <td><?php echo $hotel['vote']?></td>
+                    <td><?php echo $hotel['distance_to_center']?> km</td>
+                </tr>
+            <?php endforeach; ?>
         <?php endif; ?>
-        
-        <td><?php echo $hotel['vote']?></td>
-        <td><?php echo $hotel['distance_to_center']?> km</td>
-        </tr>
-        <?php endforeach; ?>
-
     </tbody>
     </table>
 </div>
