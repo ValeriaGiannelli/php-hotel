@@ -41,8 +41,9 @@
 
     ];
 
-// se la chiave "parking" è true allora metti Sì -> se è false metti No
-
+// deve prendere i valori che la persona passa 
+$parking = $_GET["parking"];
+var_dump($parking);
 
 
 ?>
@@ -59,23 +60,24 @@
 <body>
 
 <div class="container my-5">
-    <form action="index.php">
-        <!-- check per il parcheggio -->
+
+    <form action="index.php" method="get">
         <label for="">Parcheggio</label>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="yes" id="parking">
+            <input class="form-check-input" type="radio" name="parking" id="parking" value="yes">
             <label class="form-check-label" for="parking">
-                Sì
+            Sì
             </label>
         </div>
-
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="no" id="noParking" checked>
+            <input class="form-check-input" type="radio" name="parking" id="noParking" value="no">
             <label class="form-check-label" for="noParking">
-                No
+            No
             </label>
         </div>
+        <button type="submit">Ricerca</button>
     </form>
+
     <!-- tabella con le informazioni -->
     <table class="table table-striped">
     <thead>
