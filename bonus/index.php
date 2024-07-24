@@ -45,6 +45,24 @@
 $parking = $_GET["parking"];
 // var_dump($parking);
 
+// se la variabile è settata su sì mi creo un nuovo array
+if($parking === 'yes'){
+    foreach($hotels as $hotel){
+        if($hotel['parking']){
+            $filtered_hotel[] = $hotel; 
+        }
+    }
+    var_dump($filtered_hotel);
+} else if($parking === 'no'){
+    foreach($hotels as $hotel){
+        if(!$hotel['parking']){
+            $filtered_hotel[] = $hotel;
+        }
+    }
+    var_dump($filtered_hotel);
+} else {
+    $filtered_hotel = $hotels;
+}
 
 ?>
 
@@ -100,38 +118,7 @@ $parking = $_GET["parking"];
     </thead>
 
     <tbody>
-
-        <!-- se la variabile parking ha valore Sì stampa gli hotel con sì -->
-        <?php if($parking === 'yes'):?>
-        <!-- cicla su ogni elemento -->
-            <?php foreach($hotels as $hotel): ?>
-                <!-- se la chiave parcheggio è true stampa quelli -->
-                <?php if($hotel['parking']):?>
-                    <tr>
-                    <td><?php echo $hotel['name']?></td>
-                    <td><?php echo $hotel['description']?></td>
-                    <td>Sì</td>
-                    <td><?php echo $hotel['vote']?></td>
-                    <td><?php echo $hotel['distance_to_center']?> km</td>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        
-        <!-- altrimenti se la variabile parking ha valore NO -->
-        <?php elseif($parking === 'no'): ?>
-            <?php foreach($hotels as $hotel): ?>
-                <?php if(!$hotel['parking']):?>
-                    <tr>
-                    <td><?php echo $hotel['name']?></td>
-                    <td><?php echo $hotel['description']?></td>
-                    <td>No</td>
-                    <td><?php echo $hotel['vote']?></td>
-                    <td><?php echo $hotel['distance_to_center']?> km</td>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        
-        <!-- se non è nè sì nè no allora stampami la tabella intera -->
-        <?php else: ?>
-            <?php foreach($hotels as $hotel): ?>
+             <?php foreach($filtered_hotel as $hotel): ?>
                 <tr>
                     <td><?php echo $hotel['name']?></td>
                     <td><?php echo $hotel['description']?></td>
@@ -148,7 +135,7 @@ $parking = $_GET["parking"];
                     <td><?php echo $hotel['distance_to_center']?> km</td>
                 </tr>
             <?php endforeach; ?>
-        <?php endif; ?>
+
     </tbody>
     </table>
 </div>
