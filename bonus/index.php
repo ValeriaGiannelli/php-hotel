@@ -44,6 +44,8 @@
 // deve prendere i valori che la persona passa 
 $parking = $_GET["parking"];
 // var_dump($parking);
+$filtered_hotel = $hotels;
+
 
 // se la variabile è settata su sì mi creo un nuovo array
 if($parking === 'yes'){
@@ -64,6 +66,15 @@ if($parking === 'yes'){
     $filtered_hotel = $hotels;
 }
 
+// per il ranking
+if($_GET['ranking']){
+    foreach($filtered_hotel as $hotel){
+        if($hotel['vote'] >= $_GET['ranking']){
+            $filtered_hotel[] =$hotel;
+        }
+    }
+}
+
 ?>
 
 
@@ -80,26 +91,71 @@ if($parking === 'yes'){
 <div class="container my-5">
     <!-- form per i filtri -->
     <form action="index.php" method="get">
+        <div class="row">
+            <div class="col-6">
+    
+                <!-- check per il parcheggio -->
+                <label for="">Parcheggio</label>
 
-    <!-- check per il parcheggio -->
-        <label for="">Parcheggio</label>
+                <!-- check per il positivo -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="parking" id="parking" value="yes">
+                    <label class="form-check-label" for="parking">
+                    Sì
+                    </label>
+                </div>
 
-        <!-- check per il positivo -->
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="parking" id="parking" value="yes">
-            <label class="form-check-label" for="parking">
-            Sì
-            </label>
+                <!-- check per il negativo -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="parking" id="noParking" value="no">
+                    <label class="form-check-label" for="noParking">
+                    No
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                    <label for="">Valutazione</label>
+                    <!-- valutazione -->
+                    <div class="form-check col-auto">
+                        <input class="form-check-input" type="radio" name="ranking" id="ranking1" value="1">
+                        <label class="form-check-label" for="ranking1">
+                        1
+                        </label>
+                    </div>
+                    <!-- valutazione -->
+                    <div class="form-check col-auto">
+                        <input class="form-check-input" type="radio" name="ranking" id="ranking2" value="2">
+                        <label class="form-check-label" for="ranking2">
+                        2
+                        </label>
+                    </div>
+                    <!-- valutazione -->
+                    <div class="form-check col-auto">
+                        <input class="form-check-input" type="radio" name="ranking" id="ranking3" value="3">
+                        <label class="form-check-label" for="ranking3">
+                        3
+                        </label>
+                    </div>
+                    <!-- valutazione -->
+                    <div class="form-check col-auto">
+                        <input class="form-check-input" type="radio" name="ranking" id="ranking4" value="4">
+                        <label class="form-check-label" for="ranking4">
+                        4
+                        </label>
+                    </div>
+                    <!-- valutazione -->
+                    <div class="form-check col-auto">
+                        <input class="form-check-input" type="radio" name="ranking" id="ranking5" value="5">
+                        <label class="form-check-label" for="ranking5">
+                        5
+                        </label>
+                    </div>
+                </div>
+                
+            </div>
         </div>
-
-        <!-- check per il negativo -->
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="parking" id="noParking" value="no">
-            <label class="form-check-label" for="noParking">
-            No
-            </label>
-        </div>
-
         <!-- bottone di submit -->
         <button type="submit">Ricerca</button>
     </form>
