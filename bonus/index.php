@@ -44,39 +44,45 @@
 // deve prendere i valori che la persona passa 
 $parking = $_GET["parking"];
 // var_dump($parking);
-// $filtered_hotel = $hotels;
+$filtered_hotel = $hotels;
 
 
 // se la variabile è settata su sì mi creo un nuovo array
 if($parking === 'yes'){
-    foreach($hotels as $hotel){
+    $parking_yes=[];
+    foreach($filtered_hotel as $hotel){
         if($hotel['parking']){
-            $filtered_hotel[] = $hotel; 
+            $parking_yes[] = $hotel; 
         }
     }
-    var_dump($filtered_hotel);
+    $filtered_hotel = $parking_yes;
+    // var_dump($filtered_hotel);
 } else if($parking === 'no'){
-    foreach($hotels as $hotel){
+    $parking_no=[];
+    foreach($filtered_hotel as $hotel){
         if(!$hotel['parking']){
-            $filtered_hotel[] = $hotel;
+            $parking_no[] = $hotel;
         }
     }
-    var_dump($filtered_hotel);
-} else {
-    $filtered_hotel = $hotels;
-}
+    $filtered_hotel = $parking_no;
+    // var_dump($filtered_hotel);
+} 
 
 
-$rated_hotels = $filtered_hotel;
+// $rated_hotels = $filtered_hotel;
 
 // per il ranking
 if($_GET['ranking']){
-    foreach($rated_hotels as $hotel){
+    $rated_hotels=[];
+    foreach($filtered_hotel as $hotel){
         if($hotel['vote'] >= $_GET['ranking']){
-            $filtered_hotel[] =$hotel;
+            $rated_hotels[] = $hotel;
         }
     }
+    $filtered_hotel = $rated_hotels;
 }
+
+var_dump($rated_hotels);
 
 ?>
 
