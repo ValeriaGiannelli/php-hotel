@@ -80,14 +80,7 @@
         <td><?php echo $hotel['description']?></td>
 
         <!-- se parcheggio è true allora stampa Sì -->
-        <?php if($hotel['parking']):?>
-            <td>Sì</td>
-        
-        <!-- se parcheggio è false allora stampa No -->
-        <?php else: ?>
-            <td>No</td>
-        <?php endif; ?>
-        
+        <td><?php echo $hotel['parking'] ? 'Sì' : 'No'?></td>                  
         <td><?php echo $hotel['vote']?></td>
         <td><?php echo $hotel['distance_to_center']?> km</td>
         </tr>
